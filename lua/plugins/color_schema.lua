@@ -1,11 +1,29 @@
+-- return {
+--   lazy = false,
+--   priority = 1000,
+--   "nordtheme/vim",
+--   config = function()
+--     -- vim.g.nord_uniform_diff_background = 1
+--     -- vim.cmd.colorscheme("nord")
+--   end,
+-- }
 return {
-	lazy = false,
-	priority = 1000,
-	"nordtheme/vim",
-	config = function()
-		vim.g.nord_uniform_diff_background = 1
-		vim.cmd.colorscheme("nord")
-	end,
+  "scottmckendry/cyberdream.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("cyberdream").setup({
+      transparent = true,
+      italic_comments = true,
+      hide_fillchars = true,
+      terminal_colors = false,
+      cache = true,
+      borderless_telescope = false,
+      theme = { variant = "auto" },
+    })
+
+    vim.cmd("colorscheme cyberdream")
+  end,
 }
 -- return {
 --   "shaunsingh/nord.nvim",

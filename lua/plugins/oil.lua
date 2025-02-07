@@ -33,10 +33,10 @@ return {
 				},
 				view_options = {
 					show_hidden = true,
-					is_hidden_file = function(name, bufnr)
-						return (vim.startswith(name, ".") or string.find(name, ".g."))
-							and not vim.startswith(name, "..")
-					end,
+					-- is_hidden_file = function(name, bufnr)
+					-- 	return (vim.startswith(name, ".") or string.find(name, ".g."))
+					-- 		and not vim.startswith(name, "..")
+					-- end,
 				},
 				float = {
 					win_options = {

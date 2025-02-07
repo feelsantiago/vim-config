@@ -81,7 +81,7 @@ function capabilities()
     lineFoldingOnly = true,
   }
 
-  return vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+  return vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 end
 
 return {
@@ -111,7 +111,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       "j-hui/fidget.nvim",
     },
     config = function()
@@ -132,12 +132,12 @@ return {
         lua_ls = {
           settings = {
             Lua = {
-              runtime = { version = "LuaJIT" },
               workspace = {
                 checkThirdParty = false,
                 library = {
                   "${3rd}/luv/library",
-                  unpack(vim.api.nvim_get_runtime_file("", true)),
+                  "${3rd}/love2d/library",
+                  -- unpack(vim.api.nvim_get_runtime_file("", true)),
                 },
               },
               telemetry = { enabled = false },
@@ -154,6 +154,11 @@ return {
             -- implicitProjectConfiguration = {
             --   checkJs = true,
             -- },
+          },
+        },
+        eslint = {
+          experimental = {
+            useFlatConfig = true,
           },
         },
         yamlls = {},

@@ -8,22 +8,22 @@
 --   end,
 -- }
 return {
-  "scottmckendry/cyberdream.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require("cyberdream").setup({
-      transparent = true,
-      italic_comments = true,
-      hide_fillchars = true,
-      terminal_colors = false,
-      cache = true,
-      borderless_telescope = false,
-      theme = { variant = "auto" },
-    })
+	"scottmckendry/cyberdream.nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		require("cyberdream").setup({
+			transparent = true,
+			italic_comments = true,
+			hide_fillchars = true,
+			terminal_colors = false,
+			cache = true,
+			borderless_pickers = false,
+			variant = "auto",
+		})
 
-    vim.cmd("colorscheme cyberdream")
-  end,
+		vim.cmd("colorscheme cyberdream")
+	end,
 }
 -- return {
 --   "shaunsingh/nord.nvim",

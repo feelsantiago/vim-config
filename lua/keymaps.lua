@@ -34,20 +34,20 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Keep cursor when J" })
 
 -- Press 'S' for quick find/replace for the word under the cursor
 vim.keymap.set("n", "<C-S>", function()
-  local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
-  local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
-  vim.api.nvim_feedkeys(keys, "n", false)
+	local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
+	local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+	vim.api.nvim_feedkeys(keys, "n", false)
 end, { desc = "Quick find/replace" })
 
 -- Open Spectre for global find/replace
 vim.keymap.set("n", "<leader>ss", function()
-  require("spectre").toggle()
+	require("spectre").toggle()
 end, { desc = "Open Spectre" })
 
 -- Open Spectre for global find/replace for the word under the cursor in normal mode
 -- TODO Fix, currently being overriden by Telescope
 vim.keymap.set("n", "<leader>sw", function()
-  require("spectre").open_visual({ select_word = true })
+	require("spectre").open_visual({ select_word = true })
 end, { desc = "Search current word" })
 
 -- Press 'H', 'L' to jump to start/end of a line (first/last char)
@@ -64,45 +64,45 @@ vim.keymap.set("n", "<leader>no", "<cmd>noh<cr>", { desc = "Turn off highlighted
 
 -- Goto next diagnostic of any severity
 vim.keymap.set("n", "]d", function()
-  vim.diagnostic.goto_next({})
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_next({})
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto next diagnostic" })
 
 -- Goto previous diagnostic of any severity
 vim.keymap.set("n", "[d", function()
-  vim.diagnostic.goto_prev({})
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_prev({})
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto previous diagnostic" })
 
 -- Goto next error diagnostic
 vim.keymap.set("n", "]e", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto next error diagnostic" })
 
 -- Goto previous error diagnostic
 vim.keymap.set("n", "[e", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto previous error diagnostic" })
 
 -- Goto next warning diagnostic
 vim.keymap.set("n", "]w", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto next warning diagnostic" })
 
 -- Goto previous warning diagnostic
 vim.keymap.set("n", "[w", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-  vim.api.nvim_feedkeys("zz", "n", false)
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+	vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = "Goto previous warning diagnostic" })
 
 -- Open the diagnostic under the cursor in a float window
 vim.keymap.set("n", "<leader>d", function()
-  vim.diagnostic.open_float({
-    border = "rounded",
-  })
+	vim.diagnostic.open_float({
+		border = "rounded",
+	})
 end, { desc = "Open diagnostic under cursor in a float window" })
 
 -- Resize split windows to be equal size
@@ -133,68 +133,68 @@ vim.keymap.set("n", "\\", "<cmd>split<cr>", { desc = "Horizontal Split" })
 
 -- Plugin Manager
 vim.keymap.set("n", "<leader>pi", function()
-  require("lazy").install()
+	require("lazy").install()
 end, { desc = "Plugins Install" })
 vim.keymap.set("n", "<leader>ps", function()
-  require("lazy").home()
+	require("lazy").home()
 end, { desc = "Plugins Status" })
 vim.keymap.set("n", "<leader>pS", function()
-  require("lazy").sync()
+	require("lazy").sync()
 end, { desc = "Plugins Sync" })
 vim.keymap.set("n", "<leader>pu", function()
-  require("lazy").check()
+	require("lazy").check()
 end, { desc = "Plugins Check Updates" })
 vim.keymap.set("n", "<leader>pU", function()
-  require("lazy").update()
+	require("lazy").update()
 end, { desc = "Plugins Update" })
 
 -- Buffers
 vim.keymap.set("n", "<leader>c", function()
-  require("astronvim.utils.buffer").close()
+	require("astronvim.utils.buffer").close()
 end, { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>C", function()
-  require("astronvim.utils.buffer").close(0, true)
+	require("astronvim.utils.buffer").close(0, true)
 end, { desc = "Force close buffer" })
 
 -- smartsplits
 vim.keymap.set("n", "<C-h>", function()
-  require("smart-splits").move_cursor_left()
+	require("smart-splits").move_cursor_left()
 end, { desc = "Move to left split" })
 vim.keymap.set("n", "<C-j>", function()
-  require("smart-splits").move_cursor_down()
+	require("smart-splits").move_cursor_down()
 end, { desc = "Move to below split" })
 vim.keymap.set("n", "<C-k>", function()
-  require("smart-splits").move_cursor_up()
+	require("smart-splits").move_cursor_up()
 end, { desc = "Move to above split" })
 vim.keymap.set("n", "<C-l>", function()
-  require("smart-splits").move_cursor_right()
+	require("smart-splits").move_cursor_right()
 end, { desc = "Move to right split" })
 vim.keymap.set("n", "<C-Up>", function()
-  require("smart-splits").resize_up()
+	require("smart-splits").resize_up()
 end, { desc = "Resize split up" })
 vim.keymap.set("n", "<C-Down>", function()
-  require("smart-splits").resize_down()
+	require("smart-splits").resize_down()
 end, { desc = "Resize split down" })
 vim.keymap.set("n", "<C-Left>", function()
-  require("smart-splits").resize_left()
+	require("smart-splits").resize_left()
 end, { desc = "Resize split left" })
 vim.keymap.set("n", "<C-Right>", function()
-  require("smart-splits").resize_right()
+	require("smart-splits").resize_right()
 end, { desc = "Resize split right" })
 
 -- Terminal
 vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "ToggleTerm float" })
 vim.keymap.set(
-  "n",
-  "<leader>th",
-  "<cmd>ToggleTerm size=10 direction=horizontal<cr>",
-  { desc = "ToggleTerm horizontal split" }
+	"n",
+	"<leader>th",
+	"<cmd>ToggleTerm size=10 direction=horizontal<cr>",
+	{ desc = "ToggleTerm horizontal split" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>tv",
-  "<cmd>ToggleTerm size=80 direction=vertical<cr>",
-  { desc = "ToggleTerm vertical split" }
+	"n",
+	"<leader>tv",
+	"<cmd>ToggleTerm size=80 direction=vertical<cr>",
+	{ desc = "ToggleTerm vertical split" }
 )
 vim.keymap.set("n", "<F7>", '<Cmd>execute v:count . "ToggleTerm"<CR>', { desc = "Toggle terminal" })
 vim.keymap.set("i", "<F7>", '<Esc><Cmd>exevute v:count . "ToggleTerm"<CR>', { desc = "Toggle terminal" })
@@ -208,19 +208,19 @@ vim.keymap.set("t", "<C-\\>", "<cmd>ToggleTerm direction=float<cr>", { desc = "T
 vim.keymap.set("n", "<C-\\>", "<cmd>ToggleTerm direction=float<cr>", { desc = "ToggleTerm float" })
 
 vim.keymap.set("n", "zR", function()
-  require("ufo").openAllFolds()
+	require("ufo").openAllFolds()
 end, { desc = "Open all folds" })
 vim.keymap.set("n", "zM", function()
-  require("ufo").closeAllFolds()
+	require("ufo").closeAllFolds()
 end, { desc = "Close all folds" })
 vim.keymap.set("n", "zr", function()
-  require("ufo").openFoldsExceptKinds()
+	require("ufo").openFoldsExceptKinds()
 end, { desc = "Fold less" })
 vim.keymap.set("n", "zm", function()
-  require("ufo").closeFoldsWith()
+	require("ufo").closeFoldsWith()
 end, { desc = "Fold more" })
 vim.keymap.set("n", "zp", function()
-  require("ufo").peekFoldedLinesUnderCursor()
+	require("ufo").peekFoldedLinesUnderCursor()
 end, { desc = "Peek fold" })
 
 -- Stay in indent mode
@@ -260,3 +260,9 @@ vim.keymap.set("n", "<leader>Fr", "<cmd>FlutterReload<CR>", { desc = "Flutter Re
 vim.keymap.set("n", "<leader>FR", "<cmd>FlutterRestart<CR>", { desc = "Flutter Restart" })
 vim.keymap.set("n", "<leader>Fo", "<cmd>FlutterOutlineToggle<CR>", { desc = "Flutter Outline" })
 vim.keymap.set("n", "<leader>Fs", "<cmd>FlutterRun<CR>", { desc = "Flutter Run Project" })
+
+-- ia complete keymap
+vim.keymap.set("i", "<A-Tab>", "codeium#Accept()", {
+	expr = true,
+	replace_keycodes = false,
+})

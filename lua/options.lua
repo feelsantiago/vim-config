@@ -60,7 +60,7 @@ vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.cursorline = true
 
 -- Set fold settings
--- These options were reccommended by nvim-ufo
+-- These options were recommended by nvim-ufo
 -- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99
@@ -76,7 +76,7 @@ vim.opt.cmdheight = 0
 -- Place a column line
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 0
 
 -- globals
 vim.g.autoformat_enabled = true

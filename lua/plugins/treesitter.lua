@@ -31,6 +31,7 @@ return {
 					"ocaml",
 					"ocaml_interface",
 					"prisma",
+					"regex",
 					"rust",
 					"tsx",
 					"typescript",
@@ -45,10 +46,10 @@ return {
 					disable = { "ocaml", "ocaml_interface", "dart" },
 				},
 				autopairs = {
-					enable = true,
+					enable = false,
 				},
 				autotag = {
-					enable = true,
+					enable = false,
 				},
 				incremental_selection = {
 					enable = true,

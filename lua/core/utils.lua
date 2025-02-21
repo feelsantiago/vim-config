@@ -219,4 +219,46 @@ function M.toggle_global_boolean(option, description)
 	})
 end
 
+function M.deepest_root_pattern(patterns1, patterns2)
+	-- custom function for finding the deepest root pattern
+	local lspconfig_util = require("lspconfig.util")
+
+	-- Create two root_pattern functions
+	local find_root1 = lspconfig_util.root_pattern(unpack(patterns1))
+	local find_root2 = lspconfig_util.root_pattern(unpack(patterns2))
+
+	return function(startpath)
+		local path1 = find_root1(startpath)
+		local path2 = find_root2(startpath)
+
+		if path1 and path2 then
+			-- Count the number of slashes to determine the path length
+			local path1_length = select(2, path1:gsub("/", ""))
+			local path2_length = select(2, path2:gsub("/", ""))
+
+			if path1_length > path2_length then
+				return path1
+			end
+		elseif path1 then
+			return path1
+		end
+
+		return nil
+	end
+end
+
+function M.is_deno_project()
+	local deno_files = { "deno.json", "deno.jsonc", "deno.lock" }
+
+	for _, filepath in ipairs(deno_files) do
+		filepath = table.concat({ vim.fn.getcwd(), filepath }, "/")
+
+		if vim.uv.fs_stat(filepath) ~= nil then
+			return true
+		end
+	end
+
+	return false
+end
+
 return M

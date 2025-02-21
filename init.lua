@@ -12,3 +12,6 @@ require("custom.clear_jumps")
 require("custom.format_on_save")
 require("custom.close_windows")
 -- require("custom.semantic_tokens")
+
+-- after commands
+require("commands")

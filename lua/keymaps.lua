@@ -45,7 +45,7 @@ vim.keymap.set("n", "<leader>ss", function()
 end, { desc = "Open Spectre" })
 
 -- Open Spectre for global find/replace for the word under the cursor in normal mode
--- TODO Fix, currently being overriden by Telescope
+-- TODO Fix, currently being overridden by Telescope
 vim.keymap.set("n", "<leader>sw", function()
 	require("spectre").open_visual({ select_word = true })
 end, { desc = "Search current word" })
@@ -147,14 +147,6 @@ end, { desc = "Plugins Check Updates" })
 vim.keymap.set("n", "<leader>pU", function()
 	require("lazy").update()
 end, { desc = "Plugins Update" })
-
--- Buffers
-vim.keymap.set("n", "<leader>c", function()
-	require("astronvim.utils.buffer").close()
-end, { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>C", function()
-	require("astronvim.utils.buffer").close(0, true)
-end, { desc = "Force close buffer" })
 
 -- smartsplits
 vim.keymap.set("n", "<C-h>", function()

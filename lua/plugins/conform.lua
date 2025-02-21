@@ -1,3 +1,13 @@
+local utils = require("core.utils")
+
+function js_formatters()
+	if utils.is_deno_project() then
+		return { "deno_fmt", stop_after_first = true }
+	else
+		return { "prettierd", "prettier", stop_after_first = true }
+	end
+end
+
 return {
 	{
 		"stevearc/conform.nvim",
@@ -5,12 +15,14 @@ return {
 		event = { "BufWritePre" },
 		opts = {
 			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				html = { "prettierd", "prettier", stop_after_first = true },
-				css = { "prettierd", "prettier", stop_after_first = true },
-				go = { "gofumpt", "goimports" },
+				lua = { "stylua", stop_after_first = true },
+				javascript = js_formatters,
+				typescript = js_formatters,
+				html = js_formatters,
+				css = js_formatters,
+				json = js_formatters,
+				markdown = js_formatters,
+				go = { "gofumpt", "golines", "goimports-reviser" },
 				-- Use the "*" filetype to run formatters on all filetypes.
 				["*"] = { "codespell" },
 			},

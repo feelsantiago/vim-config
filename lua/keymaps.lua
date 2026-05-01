@@ -13,9 +13,6 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { silent = false, desc = "Save" }
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { silent = false, desc = "Quit" })
 vim.keymap.set("n", "<leader>Q", "<cmd>qall<cr>", { silent = false, desc = "Quit" })
 
--- Save and Quit with leader key
-vim.keymap.set("n", "<leader>z", "<cmd>wq<cr>", { silent = false, desc = "Save and quit" })
-
 -- Center buffer while navigating
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

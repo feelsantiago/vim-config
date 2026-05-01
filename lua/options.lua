@@ -76,7 +76,7 @@ vim.opt.cmdheight = 0
 -- Place a column line
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 2
 
 -- globals
 vim.g.autoformat_enabled = true

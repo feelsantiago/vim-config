@@ -4,6 +4,10 @@ local on_attach = function(client, buffer_number)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
+	if client.name == "angularls" then
+		client.server_capabilities.renameProvider = false
+	end
+
 	vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
 	vim.keymap.set(
 		"n",
@@ -60,12 +64,12 @@ local on_attach = function(client, buffer_number)
 		vim.lsp.buf.signature_help,
 		{ desc = "LSP: Signature Documentation", buffer = buffer_number }
 	)
-	vim.keymap.set(
-		"i",
-		"<C-k>",
-		vim.lsp.buf.signature_help,
-		{ desc = "LSP: Signature Documentation", buffer = buffer_number }
-	)
+	-- vim.keymap.set(
+	-- 	"i",
+	-- 	"<C-k>",
+	-- 	vim.lsp.buf.signature_help,
+	-- 	{ desc = "LSP: Signature Documentation", buffer = buffer_number }
+	-- )
 
 	-- Lesser used LSP functionality
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP: [G]oto [D]eclaration", buffer = buffer_number })
@@ -121,6 +125,8 @@ return {
 			local utils = require("core.utils")
 			local get_icon = require("utils").get_icon
 			local lspconfig_util = require("lspconfig.util")
+			local ok, mason_registry = pcall(require, "mason-registry")
+			local angularls_path = mason_registry.get_package("angular-language-server"):get_install_path()
 
 			-- Default handlers for LSP
 			local default_handlers = {
@@ -131,9 +137,28 @@ return {
 			local servers = {
 				-- LSP Servers
 				cssls = {},
-				html = {},
+				html = {
+					filetypes = { "html", "htmlangular" },
+				},
 				jsonls = {},
-				angularls = {},
+				angularls = {
+					filetypes = { "typescript", "html", "htmlangular" },
+					root_dir = lspconfig_util.root_pattern("nx.json", "angular.json"),
+					cmd = {
+						"ngserver",
+						"--stdio",
+						"--tsProbeLocations",
+						table.concat({
+							angularls_path,
+							vim.uv.cwd(),
+						}, ","),
+						"--ngProbeLocations",
+						table.concat({
+							angularls_path .. "/node_modules/@angular/language-server",
+							vim.uv.cwd(),
+						}, ","),
+					},
+				},
 				astro = {},
 				lua_ls = {
 					settings = {
@@ -150,6 +175,7 @@ return {
 						},
 					},
 				},
+				emmet_language_server = {},
 				marksman = {},
 				-- nil_ls = {},
 				gopls = {},
@@ -164,13 +190,14 @@ return {
 						{ "package.json", "tsconfig.json" }
 					),
 				},
+				rust_analyzer = {},
 				ts_ls = {
 					-- root_dir = lspconfig_util.root_pattern("tsconfig.json", "package.json"),
 					root_dir = utils.deepest_root_pattern(
 						{ "tsconfig.json", "package.json" },
 						{ "deno.json", "deno.jsonc", "import_map.json" }
 					),
-					single_file_support = false,
+					single_file_support = true,
 					settings = {
 						maxTsServerMemory = 12000,
 						-- implicitProjectConfiguration = {
@@ -211,6 +238,7 @@ return {
 			-- Iterate over our servers and set them up
 			for name, config in pairs(servers) do
 				require("lspconfig")[name].setup({
+					cmd = config.cmd,
 					capabilities = capabilities(),
 					filetypes = config.filetypes,
 					handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),

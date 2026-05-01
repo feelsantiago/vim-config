@@ -2,6 +2,9 @@ return {
 	{
 		"Exafunction/codeium.vim",
 		event = "BufEnter",
+		config = function()
+			vim.g.codeium_no_map_tab = 1
+		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
@@ -33,13 +36,18 @@ return {
 			completion = {
 				accept = {
 					auto_brackets = {
-						enabled = true,
+						enabled = false,
 					},
 				},
+				trigger = {
+					prefetch_on_insert = false,
+					show_on_insert_on_trigger_character = false,
+				},
 				menu = {
-					auto_show = function(ctx)
-						return ctx.mode ~= "cmdline"
-					end,
+					-- auto_show = function(ctx)
+					-- 	return ctx.mode ~= "cmdline"
+					-- end,
+					auto_show = true,
 					border = "single",
 					draw = {
 						columns = { { "provider" }, { "kind_icon" }, { "label", gap = 1 }, { "kind" } },
@@ -135,6 +143,9 @@ return {
 				},
 			},
 			sources = {
+				-- min_keyword_length = function(ctx)
+				-- 	return ctx.trigger.kind == "trigger_character" and 0 or 3
+				-- end,
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 		},

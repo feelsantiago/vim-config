@@ -40,10 +40,11 @@ return {
 				sync_install = false,
 				highlight = {
 					enable = true,
+					-- disable = { "dart" },
 				},
 				indent = {
 					enable = true,
-					disable = { "ocaml", "ocaml_interface", "dart" },
+					-- disable = { "ocaml", "ocaml_interface", "dart" },
 				},
 				autopairs = {
 					enable = false,

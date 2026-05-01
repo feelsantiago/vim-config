@@ -4,7 +4,7 @@ function js_formatters()
 	if utils.is_deno_project() then
 		return { "deno_fmt", stop_after_first = true }
 	else
-		return { "prettierd", "prettier", stop_after_first = true }
+		return { "prettier", stop_after_first = true }
 	end
 end
 
@@ -19,10 +19,13 @@ return {
 				javascript = js_formatters,
 				typescript = js_formatters,
 				html = js_formatters,
+				htmlangular = js_formatters,
 				css = js_formatters,
 				json = js_formatters,
 				markdown = js_formatters,
 				go = { "gofumpt", "golines", "goimports-reviser" },
+				dart = { "dart_format" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Use the "*" filetype to run formatters on all filetypes.
 				["*"] = { "codespell" },
 			},
